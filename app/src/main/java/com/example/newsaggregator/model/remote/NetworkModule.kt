@@ -1,6 +1,8 @@
-package com.example.newsaggregator.model
+package com.example.newsaggregator.model.remote
 
 import com.example.newsaggregator.BuildConfig
+import com.example.newsaggregator.model.NewsApi
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -15,11 +17,13 @@ val networkModule = module {
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder().baseUrl(BuildConfig.NEWS_API_URL).client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create()).build()
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory()).build()
 }
 
 fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 
-fun provideNewsApi(retrofit: Retrofit): NewsApi = retrofit.create(NewsApi::class.java)
+fun provideNewsApi(retrofit: Retrofit): NewsApi = retrofit.create(
+    NewsApi::class.java)

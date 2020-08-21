@@ -1,11 +1,12 @@
-package com.example.newsaggregator
+package com.example.newsaggregator.app
 
 import android.app.Application
-import com.example.newsaggregator.model.centralNewsRepository
-import com.example.newsaggregator.model.connectivityModule
+import com.example.newsaggregator.model.*
 import com.example.newsaggregator.model.db.newsDatabaseHelper
-import com.example.newsaggregator.model.networkModule
-import com.example.newsaggregator.model.newsDatabaseModule
+import com.example.newsaggregator.model.db.newsDatabaseModule
+import com.example.newsaggregator.model.remote.connectivityModule
+import com.example.newsaggregator.model.remote.networkModule
+import com.example.newsaggregator.model.remote.remoteDataModel
 import com.example.newsaggregator.viewmodel.mainViewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -26,6 +27,7 @@ class NewsApp : Application() {
                     newsDatabaseModule,
                     mainViewModelModule,
                     newsDatabaseHelper,
+                    remoteDataModel,
                     connectivityModule
                 )
             )

@@ -1,13 +1,24 @@
 package com.example.newsaggregator.model.db
 
+import androidx.paging.DataSource
 import com.example.newsaggregator.model.data.Article
+import com.example.newsaggregator.model.data.Channel
 
 interface NewsDatabaseHelper {
 
-    suspend fun getAllArticles(): List<Article>
+    // articles
+    suspend fun getPagedArticlesBySearchPhrase(searchPhrase: String): DataSource.Factory<Int, Article>
+
+    suspend fun getPagedArticlesByChannelId(channelId: String): DataSource.Factory<Int, Article>
 
     suspend fun insertArticles(articles: List<Article>)
 
-    suspend fun deleteArticle(article: Article)
+
+    // channels
+    suspend fun getPagedChannels(): DataSource.Factory<Int, Channel>
+
+    suspend fun getPagedFavoriteChannels(isFavorite: Boolean): DataSource.Factory<Int, Channel>
+
+    suspend fun insertChannels(channels: List<Channel>)
 
 }

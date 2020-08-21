@@ -1,4 +1,4 @@
-package com.example.newsaggregator.model
+package com.example.newsaggregator.model.remote
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -9,10 +9,15 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
 val connectivityModule = module {
-    single { provideConnectivityModule(androidApplication()) }
+    single {
+        provideConnectivityModule(
+            androidApplication()
+        )
+    }
 }
 
-fun provideConnectivityModule(context: Context) = ConnectivityModule(context)
+fun provideConnectivityModule(context: Context) =
+    ConnectivityModule(context)
 
 class ConnectivityModule(context: Context) {
     private val connectivityManager by lazy { context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }

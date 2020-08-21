@@ -1,4 +1,4 @@
-package com.example.newsaggregator.model
+package com.example.newsaggregator.model.remote
 
 import com.example.newsaggregator.BuildConfig
 import okhttp3.Interceptor
