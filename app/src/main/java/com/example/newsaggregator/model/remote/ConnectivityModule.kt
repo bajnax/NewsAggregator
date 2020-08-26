@@ -22,9 +22,6 @@ fun provideConnectivityModule(context: Context) =
 class ConnectivityModule(context: Context) {
     private val connectivityManager by lazy { context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
 
-    public val isOnline: Boolean
-        get() = isWifiAvailable || isCellularAvailable
-
     private var isWifiAvailable = false
 
     private var isCellularAvailable = false
@@ -76,6 +73,8 @@ class ConnectivityModule(context: Context) {
         }
     }
 
+    fun isOnline() = isWifiAvailable || isCellularAvailable
+
     init {
         connectivityManager.registerNetworkCallback(
             NetworkRequest.Builder().addTransportType(NetworkCapabilities.TRANSPORT_WIFI).build(),
@@ -83,7 +82,8 @@ class ConnectivityModule(context: Context) {
         )
 
         connectivityManager.registerNetworkCallback(
-            NetworkRequest.Builder().addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR).build(),
+            NetworkRequest.Builder().addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                .build(),
             cellularCallback
         )
     }

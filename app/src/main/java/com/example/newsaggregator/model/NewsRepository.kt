@@ -53,7 +53,7 @@ class NewsRepository(
         val networkError = articlesBoundaryCallback.networkError
         val requestState = articlesBoundaryCallback.requestState
 
-        data = if (connectivityModule.isOnline) {
+        data = if (connectivityModule.isOnline()) {
             LivePagedListBuilder(dataSourceLocalFactory, pagedListConfig()).setBoundaryCallback(articlesBoundaryCallback)
         } else {
             LivePagedListBuilder(dataSourceLocalFactory, pagedListConfig())
@@ -80,7 +80,7 @@ class NewsRepository(
         val networkError = channelsBoundaryCallback.networkError
         val requestState = channelsBoundaryCallback.requestState
 
-        data = if (connectivityModule.isOnline) {
+        data = if (connectivityModule.isOnline()) {
             LivePagedListBuilder(dataSourceLocalFactory, pagedListConfig()).setBoundaryCallback(channelsBoundaryCallback)
         } else {
             LivePagedListBuilder(dataSourceLocalFactory, pagedListConfig())

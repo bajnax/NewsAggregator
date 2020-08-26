@@ -12,7 +12,7 @@ interface NewsApi {
     suspend fun getPagedArticlesBySearchPhrase(
         @Query("pageSize") pageSize: Int,
         @Query("page") page: Int,
-        @Query("q") searchPhrase: String? // api doesn't respond with data if there are no query parameters :/
+        @Query("q") searchPhrase: String? = "a" // api doesn't respond with data if there are no query parameters :/
     ): Response<ArticlesResponse>
 
     @GET("everything")
