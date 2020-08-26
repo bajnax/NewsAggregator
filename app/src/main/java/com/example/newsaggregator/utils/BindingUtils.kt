@@ -11,13 +11,17 @@ import java.lang.Exception
 
 object BindingUtils {
 
-    @BindingAdapter("imageSrc")
+    @BindingAdapter("loadImage")
     @JvmStatic
     fun loadImage(view: ImageView, imageUrl: String?) {
-        Glide.with(view.context)
-            .load(imageUrl)
-            .apply(RequestOptions())
-            .into(view)
+        try {
+            Glide.with(view.context)
+                .load(imageUrl)
+                .apply(RequestOptions().centerCrop())
+                .into(view)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     @BindingAdapter("favoriteColorSelector")

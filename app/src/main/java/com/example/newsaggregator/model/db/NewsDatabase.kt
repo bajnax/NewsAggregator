@@ -19,7 +19,7 @@ val newsDatabaseModule = module {
     }
 }
 
-@Database(entities = [Article::class, Channel::class], version = 4, exportSchema = false)
+@Database(entities = [Article::class, Channel::class], version = 5, exportSchema = false)
 abstract class NewsDatabase : RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao

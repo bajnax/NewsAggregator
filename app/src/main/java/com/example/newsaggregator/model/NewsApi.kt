@@ -8,22 +8,11 @@ import retrofit2.http.Query
 
 interface NewsApi {
 
-    // todo: remove in the future
-    @GET("top-headlines")
-    suspend fun getPagedArticlesTest(
-        @Query("pageSize") pageSize: Int,
-        @Query("page") page: Int,
-        @Query("country") country: String = "ru"
-    ): Response<ArticlesResponse>
-
-
-
-
     @GET("everything")
     suspend fun getPagedArticlesBySearchPhrase(
         @Query("pageSize") pageSize: Int,
         @Query("page") page: Int,
-        @Query("q") searchPhrase: String? = ""
+        @Query("q") searchPhrase: String? // api doesn't respond with data if there are no query parameters :/
     ): Response<ArticlesResponse>
 
     @GET("everything")

@@ -23,7 +23,7 @@
     </style>
 
     <style name="ArticleTitle" parent="Title">
-        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Description" parent="Widget.AppCompat.TextView">
@@ -32,7 +32,9 @@
     </style>
 
     <style name="ArticleDescription" parent="Description">
+        <item name="android:textColor">@color/white</item>
         <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
 </resources>

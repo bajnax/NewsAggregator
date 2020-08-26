@@ -10,6 +10,9 @@ import com.example.newsaggregator.model.data.Article
 @Dao
 interface ArticleDao {
 
+    @Query("SELECT * FROM article")
+    fun getPagedArticlesTest(): DataSource.Factory<Int, Article>
+
     @Query("SELECT * FROM article WHERE title LIKE :searchPhrase")
     fun getPagedArticlesBySearchPhrase(searchPhrase: String): DataSource.Factory<Int, Article>
 

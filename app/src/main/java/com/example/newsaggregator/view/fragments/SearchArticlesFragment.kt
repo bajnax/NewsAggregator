@@ -29,6 +29,7 @@ class SearchArticlesFragment : BaseFragment<FragmentSearchArticlesBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val adapter = ArticleAdapter()
 
         binding.articlesRecyclerView.layoutManager = LinearLayoutManager(this.context)

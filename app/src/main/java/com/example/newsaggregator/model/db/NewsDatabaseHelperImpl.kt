@@ -14,7 +14,8 @@ class NewsDatabaseHelperImpl(private val newsDatabase: NewsDatabase) : NewsDatab
 
     // articles
     override suspend fun getPagedArticlesBySearchPhrase(searchPhrase: String) =
-        newsDatabase.articleDao().getPagedArticlesBySearchPhrase(searchPhrase)
+        newsDatabase.articleDao().getPagedArticlesTest()
+        //newsDatabase.articleDao().getPagedArticlesBySearchPhrase(searchPhrase)
 
     override suspend fun getPagedArticlesByChannelId(channelId: String) =
         newsDatabase.articleDao().getPagedArticlesByChannelId(channelId)

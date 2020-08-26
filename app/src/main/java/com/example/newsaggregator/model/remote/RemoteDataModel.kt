@@ -12,11 +12,8 @@ class RemoteDataModel(private val newsApi: NewsApi): ResponseHandler() {
 
     // todo: remove in the future. Use for testing atm
     suspend fun getPagedArticles(pageSize: Int, page: Int, searchPhrase: String?) = getResponse {
-        newsApi.getPagedArticlesTest(pageSize, page)
+        newsApi.getPagedArticlesBySearchPhrase(pageSize, page, "a")
     }
-
-
-
 
     suspend fun getPagedArticlesBySearchPhrase(pageSize: Int, page: Int, searchPhrase: String?) = getResponse {
         newsApi.getPagedArticlesBySearchPhrase(pageSize, page, searchPhrase)
