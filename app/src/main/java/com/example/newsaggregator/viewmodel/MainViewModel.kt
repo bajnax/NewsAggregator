@@ -26,6 +26,12 @@ class MainViewModel(
     private val databaseHelper: NewsDatabaseHelperImpl
 ) : ViewModel() {
 
+    private val _index = MutableLiveData<Int>()
+
+    fun setIndex(index: Int) {
+        _index.value = index
+    }
+
     // article
     lateinit var pagedArticles: LiveData<PagedList<Article>>
     lateinit var articlesBoundaryCallback: ArticlesBoundaryCallback
@@ -76,6 +82,10 @@ class MainViewModel(
         pagedChannels = pagedChannelsResult.pagedChannels
         requestState = pagedChannelsResult.requestState
         networkErrors = pagedChannelsResult.networkErrors
+    }
+
+    fun updateChannelFavoriteState(isFavorite: Boolean, id: String) {
+        newsRepository.updateChannelFavoriteState(viewModelScope, isFavorite, id)
     }
 
 }

@@ -19,6 +19,8 @@ interface NewsDatabaseHelper {
 
     suspend fun getPagedFavoriteChannels(isFavorite: Boolean): DataSource.Factory<Int, Channel>
 
+    suspend fun updateChannelFavoriteState(isFavorite: Boolean, id: String)
+
     suspend fun insertChannels(channels: List<Channel>)
 
 }

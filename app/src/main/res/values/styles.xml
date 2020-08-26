@@ -8,4 +8,31 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/largeText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ArticleTitle" parent="Title">
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/mediumText</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="ArticleDescription" parent="Description">
+        <item name="android:maxLines">2</item>
+    </style>
+
 </resources>

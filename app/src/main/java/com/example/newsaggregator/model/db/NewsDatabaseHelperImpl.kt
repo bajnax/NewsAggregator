@@ -29,6 +29,10 @@ class NewsDatabaseHelperImpl(private val newsDatabase: NewsDatabase) : NewsDatab
     override suspend fun getPagedFavoriteChannels(isFavorite: Boolean) =
         newsDatabase.channelDao().getPagedFavoriteChannels(isFavorite)
 
+    override suspend fun updateChannelFavoriteState(isFavorite: Boolean, id: String) {
+        newsDatabase.channelDao().updateChannelFavoriteState(isFavorite, id) //if (isFavorite) 1 else 0
+    }
+
     override suspend fun insertChannels(channels: List<Channel>) =
         newsDatabase.channelDao().insertChannels(channels)
 

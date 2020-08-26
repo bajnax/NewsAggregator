@@ -91,7 +91,6 @@ class NewsRepository(
         )
     }
 
-
     fun fetchFavoriteChannels(coroutineScope: CoroutineScope, lastRequestedPage: Int, channelsBoundaryCallback: ChannelsBoundaryCallback): PagedChannelsResult {
         lateinit var dataSourceLocalFactory: DataSource.Factory<Int, Channel>
         lateinit var data : LivePagedListBuilder<Int, Channel>
@@ -114,6 +113,16 @@ class NewsRepository(
             requestState,
             networkError
         )
+    }
+
+    fun updateChannelFavoriteState(coroutineScope: CoroutineScope, isFavorite: Boolean, id: String) {
+        coroutineScope.launch {
+            try {
+                databaseHelper.updateChannelFavoriteState(isFavorite, id)
+            } catch (e: Exception) {
+                Log.e("DB error: ", e.message ?: e.localizedMessage)
+            }
+        }
     }
 
 }
