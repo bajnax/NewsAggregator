@@ -3,8 +3,6 @@
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="tab_text_1">Sources</string>
     <string name="tab_text_2">Favorites</string>
-    <string name="tab_text_3">Search</string>
+    <string name="tab_text_3">Articles</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
