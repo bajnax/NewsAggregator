@@ -1,10 +1,12 @@
 package com.example.newsaggregator.utils
 
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.newsaggregator.R
 import java.lang.Exception
 
 object BindingUtils {
@@ -18,10 +20,10 @@ object BindingUtils {
             .into(view)
     }
 
-    @BindingAdapter("color")
+    @BindingAdapter("favoriteColorSelector")
     @JvmStatic
     fun favoriteColorSelector(view: ImageView, isFavorite: Boolean) {
-        view.setBackgroundColor(if (isFavorite) Color.YELLOW else Color.WHITE)
+        view.background = view.resources.getDrawable(if (isFavorite) R.drawable.ic_star_filled else R.drawable.ic_star_empty)
     }
 
 }

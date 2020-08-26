@@ -13,6 +13,8 @@ import com.example.newsaggregator.model.paging.ArticlesBoundaryCallback
 import com.example.newsaggregator.model.paging.ChannelsBoundaryCallback
 import com.example.newsaggregator.model.remote.RemoteDataModel
 import com.example.newsaggregator.model.wrappers.Status
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -85,7 +87,9 @@ class MainViewModel(
     }
 
     fun updateChannelFavoriteState(isFavorite: Boolean, id: String) {
-        newsRepository.updateChannelFavoriteState(viewModelScope, isFavorite, id)
+        viewModelScope.launch(Dispatchers.IO) {
+            newsRepository.updateChannelFavoriteState(this, isFavorite, id)
+        }
     }
 
 }

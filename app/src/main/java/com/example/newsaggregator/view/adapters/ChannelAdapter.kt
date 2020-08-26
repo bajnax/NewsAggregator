@@ -6,7 +6,6 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsaggregator.BR
-import com.example.newsaggregator.R
 import com.example.newsaggregator.databinding.ChannelItemBinding
 import com.example.newsaggregator.model.data.Channel
 import com.example.newsaggregator.view.common.OnChannelClickListener
@@ -42,9 +41,8 @@ class ChannelAdapter internal constructor(private val onChannelClickListener: On
             binding.executePendingBindings()
             channel?.let {
 
-                binding.favoriteIcon.setColorFilter(if (channel.isFavorite) R.color.colorAccent else R.color.colorPrimary)
                 binding.favoriteIcon.setOnClickListener {
-                    onChannelClickListener.onFavoriteClicked(channel.isFavorite, channel.id)
+                    onChannelClickListener.onFavoriteClicked(!channel.favoriteState, channel.id)
                 }
                 binding.channelContainer.setOnClickListener {
                     onChannelClickListener.onItemClicked(channel.id)
@@ -70,7 +68,7 @@ class ChannelAdapter internal constructor(private val onChannelClickListener: On
                 ): Boolean {
                     return oldContribution.url == newContribution.url &&
                             oldContribution.id == newContribution.id &&
-                            oldContribution.isFavorite == newContribution.isFavorite
+                            oldContribution.favoriteState == newContribution.favoriteState
                 }
             }
     }

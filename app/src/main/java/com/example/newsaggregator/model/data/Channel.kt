@@ -10,5 +10,5 @@ data class Channel(
     val name: String?,
     val description: String?,
     val url: String?,
-    var isFavorite: Boolean = false
+    var favoriteState: Boolean = true
 )
