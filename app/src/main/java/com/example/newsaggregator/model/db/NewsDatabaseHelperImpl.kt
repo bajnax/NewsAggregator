@@ -22,7 +22,6 @@ class NewsDatabaseHelperImpl(private val newsDatabase: NewsDatabase) : NewsDatab
     override suspend fun insertArticles(articles: List<Article>) =
         newsDatabase.articleDao().insertArticles(articles)
 
-
     // channels
     override suspend fun getPagedChannels() = newsDatabase.channelDao().getPagedChannels()
 

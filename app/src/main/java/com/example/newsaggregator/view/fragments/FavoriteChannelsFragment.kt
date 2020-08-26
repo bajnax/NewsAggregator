@@ -42,8 +42,8 @@ class FavoriteChannelsFragment : BaseFragment<FragmentFavoriteChannelsBinding>()
         binding.favoriteChannelsRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.favoriteChannelsRecyclerView.adapter = adapter
 
-        mainViewModel.fetchChannels()
-        mainViewModel.pagedChannels.observe(viewLifecycleOwner, Observer { pagedChannels ->
+        mainViewModel.fetchFavoriteChannels()
+        mainViewModel.pagedFavoriteChannels.observe(viewLifecycleOwner, Observer { pagedChannels ->
             adapter.submitList(pagedChannels)
         })
     }

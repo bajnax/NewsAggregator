@@ -1,6 +1,7 @@
 package com.example.newsaggregator.model
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -91,7 +92,7 @@ class NewsRepository(
         )
     }
 
-    fun fetchFavoriteChannels(coroutineScope: CoroutineScope, lastRequestedPage: Int, channelsBoundaryCallback: ChannelsBoundaryCallback): PagedChannelsResult {
+    fun fetchFavoriteChannels(coroutineScope: CoroutineScope): LiveData<PagedList<Channel>> {
         lateinit var dataSourceLocalFactory: DataSource.Factory<Int, Channel>
         lateinit var data : LivePagedListBuilder<Int, Channel>
         coroutineScope.launch {
@@ -102,17 +103,9 @@ class NewsRepository(
             }
         }
 
-        channelsBoundaryCallback.lastPage = lastRequestedPage
-        val networkError = channelsBoundaryCallback.networkError
-        val requestState = channelsBoundaryCallback.requestState
+        data = LivePagedListBuilder(dataSourceLocalFactory, pagedListConfig())
 
-        LivePagedListBuilder(dataSourceLocalFactory, pagedListConfig())
-
-        return PagedChannelsResult(
-            data.build(),
-            requestState,
-            networkError
-        )
+        return data.build()
     }
 
     fun updateChannelFavoriteState(coroutineScope: CoroutineScope, isFavorite: Boolean, id: String) {

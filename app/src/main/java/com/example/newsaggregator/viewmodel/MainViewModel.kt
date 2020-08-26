@@ -41,6 +41,7 @@ class MainViewModel(
     // channel
     lateinit var pagedChannels: LiveData<PagedList<Channel>>
     lateinit var channelsBoundaryCallback: ChannelsBoundaryCallback
+    lateinit var pagedFavoriteChannels: LiveData<PagedList<Channel>>
 
     // common
     lateinit var requestState: MutableLiveData<Status>
@@ -84,6 +85,10 @@ class MainViewModel(
         pagedChannels = pagedChannelsResult.pagedChannels
         requestState = pagedChannelsResult.requestState
         networkErrors = pagedChannelsResult.networkErrors
+    }
+
+    fun fetchFavoriteChannels() {
+        pagedFavoriteChannels = newsRepository.fetchFavoriteChannels(viewModelScope)
     }
 
     fun updateChannelFavoriteState(isFavorite: Boolean, id: String) {
